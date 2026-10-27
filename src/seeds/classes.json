@@ -1,0 +1,304 @@
+[
+  {
+    "id": "class-10a",
+    "name": "Class 10A",
+    "icon": "📘",
+    "classAverage": 68,
+    "studentsList": [
+      {
+        "id": "class-10a-1793089708668",
+        "name": "Aarav Mehta",
+        "subject": "maths",
+        "lastScan": 1793089708668,
+        "score": 0,
+        "performanceLevel": "above",
+        "insights": "Aarav demonstrates a strong grasp of core mathematical concepts, including differentiation, integration, probability, and vector algebra. Minor errors in questions 17 and 25 (deliberate testing notes) and occasional careless mistakes (e.g., question 25's distance calculation) suggest precision needs refinement, but overall understanding is thorough.",
+        "supportNeeds": [
+          "Refining precision in calculations (e.g., cross-product magnitude in Q25)",
+          "Double-checking algebraic manipulations (e.g., Q17 quotient rule)"
+        ],
+        "specialCare": false,
+        "numericalSkills": "secure",
+        "weakTopics": [
+          "Cross-product calculations in 3D geometry (Q25)",
+          "Quotient rule application (Q17)"
+        ],
+        "weakAreas": [
+          "Refining precision in calculations (e.g., cross-product magnitude in Q25)",
+          "Double-checking algebraic manipulations (e.g., Q17 quotient rule)"
+        ],
+        "strengths": [
+          "Accurate application of definitions (e.g., reflexive relations in Q9)",
+          "Strong problem-solving in differential equations (Q24) and probability (Q27)",
+          "Correct use of integration techniques (Q12, Q18, Q23)"
+        ],
+        "recommendations": [
+          "Practice 3–5 problems on quotient rule and cross-product calculations weekly to eliminate careless errors.",
+          "Review Q25’s vector geometry step-by-step with a peer to identify pattern-based mistakes."
+        ],
+        "evidence": [
+          "‘$y' = [(2x)(x - 1) - (x^2 + 1)]/(x - 1)^2$’ (Q17) — *incorrect numerator expansion* (should be $2x(x-1) - (x^2+1) = x^2 - 2x - 1$).",
+          "‘Distance = $10/26$’ (Q25) — *simplifies to ~0.3846* but correct magnitude was $\\sqrt{26}$; cross-product dot product error."
+        ],
+        "unverified": false,
+        "hasQuestionPaper": true,
+        "isNewStudent": true,
+        "papersCount": 1,
+        "trend": "new",
+        "school": "Greenwood High Academy",
+        "board": "CBSE"
+      },
+      {
+        "id": "a2",
+        "name": "Diya Shah",
+        "score": 72,
+        "specialCare": false,
+        "numericalSkills": "secure"
+      },
+      {
+        "id": "a3",
+        "name": "Kabir Singh",
+        "score": 45,
+        "specialCare": true,
+        "numericalSkills": "needs-support"
+      },
+      {
+        "id": "a4",
+        "name": "Meera Joshi",
+        "score": 58,
+        "specialCare": false,
+        "numericalSkills": "needs-support"
+      },
+      {
+        "id": "a5",
+        "name": "Rohan Das",
+        "score": 81,
+        "specialCare": false,
+        "numericalSkills": "secure"
+      },
+      {
+        "id": "class-10a-1793076805671",
+        "name": "sobin",
+        "subject": "",
+        "lastScan": 1793076805678,
+        "score": 0,
+        "performanceLevel": "average",
+        "insights": "The image provided is not a student answer paper. It is a photograph of a cat, so no assessment can be conducted.",
+        "supportNeeds": [
+          "Manual review"
+        ],
+        "specialCare": false,
+        "numericalSkills": "secure",
+        "weakTopics": [],
+        "strengths": [],
+        "recommendations": [
+          "Re-upload a clear photo of the answer paper."
+        ],
+        "evidence": [],
+        "unverified": true,
+        "isNewStudent": false,
+        "papersCount": 2,
+        "trend": "stable",
+        "school": "Greenwood High Academy",
+        "board": "CBSE"
+      },
+      {
+        "id": "class-10a-1793089761751",
+        "name": "Aarav Mehtah",
+        "subject": "maths",
+        "lastScan": 1793089761751,
+        "score": 0,
+        "performanceLevel": "average",
+        "insights": "First paper on record for this student.  AI key not configured. Add MISTRAL_API_KEY in backend/.env for full paper reading — student added for manual review (cross-referenced with Question Paper).",
+        "supportNeeds": [
+          "Manual review"
+        ],
+        "specialCare": false,
+        "numericalSkills": "secure",
+        "weakTopics": [],
+        "weakAreas": [
+          "Manual review"
+        ],
+        "strengths": [],
+        "recommendations": [
+          "Connect the AI key, then re-upload this paper for a full read."
+        ],
+        "hasQuestionPaper": true,
+        "isNewStudent": true,
+        "papersCount": 1,
+        "trend": "new",
+        "school": "Greenwood High Academy",
+        "board": "CBSE"
+      }
+    ],
+    "school": "Greenwood High Academy",
+    "board": "CBSE"
+  },
+  {
+    "id": "class-10b",
+    "name": "Class 10B",
+    "icon": "📗",
+    "classAverage": 0,
+    "studentsList": []
+  },
+  {
+    "id": "class-9a",
+    "name": "Class 9A",
+    "icon": "📕",
+    "classAverage": 0,
+    "studentsList": []
+  },
+  {
+    "id": "class-9b",
+    "name": "Class 9B",
+    "icon": "📙",
+    "classAverage": 0,
+    "studentsList": []
+  },
+  {
+    "id": "1792822760253-0",
+    "name": "Class 13 K",
+    "icon": "📘",
+    "classAverage": 0,
+    "studentsList": [
+      {
+        "id": "1792822760253-0-1793081188676",
+        "name": "ghfhfffh",
+        "subject": "maths",
+        "lastScan": 1793081188676,
+        "score": 0,
+        "performanceLevel": "above",
+        "insights": "The student demonstrates a strong grasp of mathematical concepts, including definitions, formulas, and problem-solving techniques. Minor errors in questions 17 and 25 (deliberate for testing) and occasional careless mistakes (e.g., incorrect integration bounds in Q23) are the only weaknesses. The paper is well-organized, with clear working and logical progression in solutions.",
+        "supportNeeds": [
+          "Reinforcement of careful verification in integration bounds and algebraic simplification",
+          "Clarification on cross-product calculations for shortest distance between skew lines"
+        ],
+        "specialCare": false,
+        "numericalSkills": "secure",
+        "weakTopics": [
+          "Integration bounds verification (Q23)",
+          "Cross-product calculations (Q25)"
+        ],
+        "weakAreas": [
+          "Reinforcement of careful verification in integration bounds and algebraic simplification",
+          "Clarification on cross-product calculations for shortest distance between skew lines"
+        ],
+        "strengths": [
+          "Accurate recall of definitions and formulas (Q1, Q3, Q7, Q10)",
+          "Strong problem-solving in differential equations (Q24), probability (Q27), and optimization (Q26)",
+          "Neat presentation and logical step-by-step working"
+        ],
+        "recommendations": [
+          "Review integration limits and substitution rules with practice problems involving variable bounds.",
+          "Practice vector cross-product calculations for shortest distance problems using multiple examples."
+        ],
+        "evidence": [
+          "Q17: Incorrect simplification of numerator: '(x² - 2x + 1)/(x - 1)²' should be '(2x(x-1) - (x²+1))/(x-1)²' (missing expansion step).",
+          "Q23: Incorrect bounds: '∫(x - x²)dx from 0 to 1' yields 1/6, but the student wrote '∫(x - x²)dx' without explicit bounds, implying a possible oversight in limits."
+        ],
+        "unverified": false,
+        "hasQuestionPaper": true,
+        "isNewStudent": false,
+        "papersCount": 8,
+        "trend": "improving",
+        "school": "fffff",
+        "board": "State"
+      },
+      {
+        "id": "1793081547918-1",
+        "name": "Aarav",
+        "score": 0,
+        "specialCare": false,
+        "numericalSkills": "needs-support"
+      },
+      {
+        "id": "1792822760253-0-1793089824712",
+        "name": "serah",
+        "subject": "maths",
+        "lastScan": 1793089824712,
+        "score": 0,
+        "performanceLevel": "above",
+        "insights": "Serah demonstrates a strong grasp of mathematical concepts, with accurate definitions, correct formulas, and well-structured solutions. Minor errors in questions 17 and 25 (deliberate for testing) are the only noticeable issues, indicating near-perfect understanding with occasional carelessness in complex derivations.",
+        "supportNeeds": [
+          "Double-checking intermediate steps in differentiation and integration problems",
+          "Refining precision in vector cross-product calculations"
+        ],
+        "specialCare": false,
+        "numericalSkills": "secure",
+        "weakTopics": [
+          "Quotient rule application (Question 17)",
+          "Vector cross-product and shortest distance calculations (Question 25)"
+        ],
+        "weakAreas": [
+          "Double-checking intermediate steps in differentiation and integration problems",
+          "Refining precision in vector cross-product calculations"
+        ],
+        "strengths": [
+          "Accurate recall of definitions and formulas",
+          "Strong problem-solving approach in algebra, calculus, and probability",
+          "Clear presentation with logical step-by-step reasoning"
+        ],
+        "recommendations": [
+          "Practice additional problems involving quotient rule and vector geometry to eliminate careless errors",
+          "Review Question 25’s cross-product calculation for consistency in sign conventions and magnitude computations"
+        ],
+        "evidence": [
+          "Using product rule: $d/dx(x^2 \\sin x) = 2x \\sin x + x^2 \\cos x$.",
+          "Plane equation: $2(x - 1) - (y - 0) + 3(z - 2) = 0$. So $2x - y + 3z - 8 = 0$.",
+          "Shortest distance = $|(a\blacksquare - a\blacksquare) - (d\blacksquare \times d\blacksquare)| / |d\blacksquare \times d\blacksquare|$. Here $a\blacksquare - a\blacksquare = (1,-3,1)$, $d\blacksquare \times d\blacksquare = (-1,4,3)$."
+        ],
+        "unverified": false,
+        "hasQuestionPaper": true,
+        "isNewStudent": true,
+        "papersCount": 1,
+        "trend": "new",
+        "school": "Greenwood High Academy",
+        "board": "CBSE"
+      }
+    ],
+    "school": "ffff",
+    "board": "State"
+  },
+  {
+    "id": "1793081776019-0",
+    "name": "Class 15B",
+    "icon": "📗",
+    "classAverage": 0,
+    "studentsList": [
+      {
+        "id": "1793081804955-0",
+        "name": "Serah Regi",
+        "score": 0,
+        "specialCare": false,
+        "numericalSkills": "needs-support"
+      },
+      {
+        "id": "1793082065316-1",
+        "name": "Serah",
+        "score": 0,
+        "specialCare": false,
+        "numericalSkills": "needs-support"
+      }
+    ],
+    "school": "Greenwood High Academy",
+    "board": "CBSE"
+  },
+  {
+    "id": "1793082046185-0",
+    "name": "Class 15B",
+    "icon": "📕",
+    "classAverage": 0,
+    "studentsList": [],
+    "school": "abc",
+    "board": "CBSE"
+  },
+  {
+    "id": "1793083992359-0",
+    "name": "Class 16",
+    "icon": "📙",
+    "classAverage": 0,
+    "studentsList": [],
+    "school": "abc",
+    "board": "CBSE"
+  }
+]

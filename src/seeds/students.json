@@ -1,0 +1,293 @@
+{
+  "1792822760253-0|||ghfhfffh|||maths": [
+    {
+      "date": "2026-10-24T06:20:59.931Z",
+      "performanceLevel": "average",
+      "insights": "First paper on record for this student.  AI key not configured. Add MISTRAL_API_KEY in backend/.env for full paper reading — student added for manual review.",
+      "weakTopics": [],
+      "supportNeeds": [
+        "Manual review"
+      ],
+      "evidence": [],
+      "unverified": false
+    },
+    {
+      "date": "2026-10-24T06:21:03.020Z",
+      "performanceLevel": "average",
+      "insights": "Paper 2 for this student (last: average on 2026-10-24).  AI key not configured. Add MISTRAL_API_KEY in backend/.env for full paper reading — student added for manual review.",
+      "weakTopics": [],
+      "supportNeeds": [
+        "Manual review"
+      ],
+      "evidence": [],
+      "unverified": false
+    },
+    {
+      "date": "2026-10-24T06:30:09.746Z",
+      "performanceLevel": "average",
+      "insights": "The provided image is not a student answer paper but rather a reference sheet of algebra symbols and definitions.",
+      "weakTopics": [],
+      "supportNeeds": [
+        "Manual review"
+      ],
+      "evidence": [],
+      "unverified": true
+    },
+    {
+      "date": "2026-10-24T06:31:11.791Z",
+      "performanceLevel": "average",
+      "insights": "The student demonstrates a basic understanding of trigonometric identities and probability but struggles with consistent accuracy in solving numerical problems and applying formulas correctly. The paper shows partial attempts at solving equations and angle calculations, but several steps are missing or incorrect.",
+      "weakTopics": [
+        "trigonometry problem-solving",
+        "algebraic manipulation",
+        "probability calculations"
+      ],
+      "supportNeeds": [
+        "numerical problem-solving",
+        "formula application"
+      ],
+      "evidence": [
+        "Tan C = AB / BC => Tan C = 20 / 20√2 = 1/√2 = Tan 20°",
+        "4x5xP^2 = 4 Px15 [P > 3]"
+      ],
+      "unverified": false
+    },
+    {
+      "date": "2026-10-27T04:04:15.065Z",
+      "performanceLevel": "average",
+      "insights": "The student demonstrates a basic understanding of trigonometric identities and probability but struggles with consistent accuracy in solving numerical problems and applying algebraic manipulations correctly. Some steps are missing or contain errors, indicating a need for reinforcement in problem-solving techniques and careful verification of calculations.",
+      "weakTopics": [
+        "algebraic equations",
+        "probability calculations",
+        "angle calculations"
+      ],
+      "supportNeeds": [
+        "algebraic manipulation",
+        "trigonometry problem-solving"
+      ],
+      "evidence": [
+        "Tan C = AB / BC => Tan C = 20/2√2 = √2 = Tan 20°",
+        "4x5xP^2 = 4PX15 [P > 3]"
+      ],
+      "unverified": false
+    },
+    {
+      "date": "2026-10-27T05:58:14.864Z",
+      "performanceLevel": "average",
+      "insights": "The student demonstrates a basic understanding of trigonometric identities and probability but struggles with consistent accuracy in solving numerical problems. The paper shows partial attempts at solving equations and angle calculations, but several steps are missing or contain errors, indicating a need for reinforcement in problem-solving techniques and careful verification of calculations.",
+      "weakTopics": [
+        "algebraic manipulation",
+        "angle calculations",
+        "probability calculations"
+      ],
+      "supportNeeds": [
+        "problem-solving techniques",
+        "calculation verification"
+      ],
+      "evidence": [
+        "Tan C = 20/20√2 = 1/√2 = Tan 20° (Q.0.1) — missing intermediate steps and verification",
+        "∠LPOQ = 180° - (90°+20°) ≥ 120° (Q.0.4) — incorrect inequality and missing reflex angle explanation"
+      ],
+      "unverified": false,
+      "hasQuestionPaper": true
+    },
+    {
+      "date": "2026-10-27T06:03:12.574Z",
+      "performanceLevel": "average",
+      "insights": "Paper 7 for this student (last: average on 2026-10-27).  AI key not configured. Add MISTRAL_API_KEY in backend/.env for full paper reading — student added for manual review (cross-referenced with Question Paper).",
+      "weakTopics": [],
+      "supportNeeds": [
+        "Manual review"
+      ],
+      "evidence": [],
+      "unverified": false,
+      "hasQuestionPaper": true
+    },
+    {
+      "date": "2026-10-27T06:06:28.676Z",
+      "performanceLevel": "above",
+      "insights": "The student demonstrates a strong grasp of mathematical concepts, including definitions, formulas, and problem-solving techniques. Minor errors in questions 17 and 25 (deliberate for testing) and occasional careless mistakes (e.g., incorrect integration bounds in Q23) are the only weaknesses. The paper is well-organized, with clear working and logical progression in solutions.",
+      "weakTopics": [
+        "Integration bounds verification (Q23)",
+        "Cross-product calculations (Q25)"
+      ],
+      "supportNeeds": [
+        "Reinforcement of careful verification in integration bounds and algebraic simplification",
+        "Clarification on cross-product calculations for shortest distance between skew lines"
+      ],
+      "evidence": [
+        "Q17: Incorrect simplification of numerator: '(x² - 2x + 1)/(x - 1)²' should be '(2x(x-1) - (x²+1))/(x-1)²' (missing expansion step).",
+        "Q23: Incorrect bounds: '∫(x - x²)dx from 0 to 1' yields 1/6, but the student wrote '∫(x - x²)dx' without explicit bounds, implying a possible oversight in limits."
+      ],
+      "unverified": false,
+      "hasQuestionPaper": true
+    }
+  ],
+  "1792822760253-0|||ghfhfffh|||": [
+    {
+      "date": "2026-10-24T06:38:55.227Z",
+      "performanceLevel": "average",
+      "insights": "This image does not look like a student answer paper — no assessment made. Please re-upload a clear photo of the paper.",
+      "weakTopics": [],
+      "supportNeeds": [
+        "Manual review"
+      ],
+      "evidence": [
+        "Algebra Symbols",
+        "equal by definition"
+      ],
+      "unverified": true
+    }
+  ],
+  "class-10a|||aarav mehta|||mmm": [
+    {
+      "date": "2026-10-27T04:47:27.341Z",
+      "performanceLevel": "average",
+      "insights": "The student demonstrates a basic understanding of trigonometric concepts and probability but struggles with consistency in solving numerical problems and applying formulas correctly. There are several careless mistakes and incomplete derivations visible in the work.",
+      "weakTopics": [
+        "correct application of trigonometric identities",
+        "algebraic manipulation in quadratic equations",
+        "probability calculations"
+      ],
+      "supportNeeds": [
+        "formula application",
+        "problem-solving consistency"
+      ],
+      "evidence": [
+        "Tan C = AB / BC => Tan C = 20/20√2 = 1/√2 = Tan 20°",
+        "4x5xP^2 = 4Px15 [P > 3]"
+      ],
+      "unverified": false
+    },
+    {
+      "date": "2026-10-27T04:47:42.187Z",
+      "performanceLevel": "average",
+      "insights": "The student demonstrates a basic understanding of trigonometric concepts and probability but continues to struggle with consistent application of formulas and algebraic manipulation. There are visible attempts at solving numerical problems, but several steps are incomplete or contain errors.",
+      "weakTopics": [
+        "quadratic equations",
+        "probability calculations",
+        "trigonometric identities"
+      ],
+      "supportNeeds": [
+        "algebraic manipulation",
+        "formula application"
+      ],
+      "evidence": [
+        "Tan C = AB / BC => Tan C = 20 / 20√2 = 1/√2 = Tan 20°",
+        "4x5xP^2 = 4PX15 [P > 3]"
+      ],
+      "unverified": false
+    }
+  ],
+  "class-10a|||sobin|||": [
+    {
+      "date": "2026-10-27T04:52:20.359Z",
+      "performanceLevel": "average",
+      "insights": "The student demonstrates a basic understanding of trigonometric identities and probability but struggles with consistency in solving numerical problems and applying geometric principles correctly. There are visible attempts at solving equations and angle calculations, but several steps contain errors or incomplete reasoning.",
+      "weakTopics": [
+        "angle calculations in geometry",
+        "algebraic manipulation in quadratic equations"
+      ],
+      "supportNeeds": [
+        "numerical problem-solving",
+        "geometric reasoning"
+      ],
+      "evidence": [
+        "Tan C = AB / BC => Tan C = 20 / (2√2) = √2 = Tan 20°",
+        "4x5xP^2 = 4Px15 [P > 3]"
+      ],
+      "unverified": false
+    },
+    {
+      "date": "2026-10-27T04:53:25.672Z",
+      "performanceLevel": "average",
+      "insights": "The image provided is not a student answer paper. It is a photograph of a cat, so no assessment can be conducted.",
+      "weakTopics": [],
+      "supportNeeds": [
+        "Manual review"
+      ],
+      "evidence": [],
+      "unverified": true
+    }
+  ],
+  "13 K|||ghfhfffh|||maths": [
+    {
+      "date": "2026-10-27T07:02:15.558Z",
+      "performanceLevel": "above",
+      "insights": "The student demonstrates a strong grasp of mathematical concepts, with accurate definitions, correct formulas, and well-structured solutions. Minor errors in questions 17 and 25 (deliberate testing notes) are the only noticeable issues, indicating near-perfect understanding with occasional carelessness.",
+      "weakTopics": [
+        "Quotient rule differentiation (Q17)",
+        "Vector cross product calculations (Q25)"
+      ],
+      "supportNeeds": [
+        "Double-checking calculations for minor arithmetic errors",
+        "Reviewing specific topics like quotient rule application (Q17) and vector cross products (Q25)"
+      ],
+      "evidence": [
+        "Using product rule: $d/dx(x^2 \\sin x) = 2x \\sin x + x^2 \\cos x$ (Q4, correct)",
+        "Plane equation: $2(x - 1) - (y - 0) + 3(z - 2) = 0$ (Q19, correct)",
+        "Incorrect quotient rule result: $y' = [(2x)(x - 1) - (x^2 + 1)]/(x - 1)^2 = (x^2 - 2x + 1)/(x - 1)^2$ (Q17, deliberate error)",
+        "Incorrect shortest distance calculation: $10/26$ (Q25, deliberate error)"
+      ],
+      "unverified": false,
+      "hasQuestionPaper": true
+    }
+  ],
+  "class-10a|||aarav mehta|||maths": [
+    {
+      "date": "2026-10-27T08:28:28.671Z",
+      "performanceLevel": "above",
+      "insights": "Aarav demonstrates a strong grasp of core mathematical concepts, including differentiation, integration, probability, and vector algebra. Minor errors in questions 17 and 25 (deliberate testing notes) and occasional careless mistakes (e.g., question 25's distance calculation) suggest precision needs refinement, but overall understanding is thorough.",
+      "weakTopics": [
+        "Cross-product calculations in 3D geometry (Q25)",
+        "Quotient rule application (Q17)"
+      ],
+      "supportNeeds": [
+        "Refining precision in calculations (e.g., cross-product magnitude in Q25)",
+        "Double-checking algebraic manipulations (e.g., Q17 quotient rule)"
+      ],
+      "evidence": [
+        "‘$y' = [(2x)(x - 1) - (x^2 + 1)]/(x - 1)^2$’ (Q17) — *incorrect numerator expansion* (should be $2x(x-1) - (x^2+1) = x^2 - 2x - 1$).",
+        "‘Distance = $10/26$’ (Q25) — *simplifies to ~0.3846* but correct magnitude was $\\sqrt{26}$; cross-product dot product error."
+      ],
+      "unverified": false,
+      "hasQuestionPaper": true
+    }
+  ],
+  "class-10a|||aarav mehtah|||maths": [
+    {
+      "date": "2026-10-27T08:29:21.752Z",
+      "performanceLevel": "average",
+      "insights": "First paper on record for this student.  AI key not configured. Add MISTRAL_API_KEY in backend/.env for full paper reading — student added for manual review (cross-referenced with Question Paper).",
+      "weakTopics": [],
+      "supportNeeds": [
+        "Manual review"
+      ],
+      "evidence": [],
+      "unverified": false,
+      "hasQuestionPaper": true
+    }
+  ],
+  "1792822760253-0|||serah|||maths": [
+    {
+      "date": "2026-10-27T08:30:24.713Z",
+      "performanceLevel": "above",
+      "insights": "Serah demonstrates a strong grasp of mathematical concepts, with accurate definitions, correct formulas, and well-structured solutions. Minor errors in questions 17 and 25 (deliberate for testing) are the only noticeable issues, indicating near-perfect understanding with occasional carelessness in complex derivations.",
+      "weakTopics": [
+        "Quotient rule application (Question 17)",
+        "Vector cross-product and shortest distance calculations (Question 25)"
+      ],
+      "supportNeeds": [
+        "Double-checking intermediate steps in differentiation and integration problems",
+        "Refining precision in vector cross-product calculations"
+      ],
+      "evidence": [
+        "Using product rule: $d/dx(x^2 \\sin x) = 2x \\sin x + x^2 \\cos x$.",
+        "Plane equation: $2(x - 1) - (y - 0) + 3(z - 2) = 0$. So $2x - y + 3z - 8 = 0$.",
+        "Shortest distance = $|(a\blacksquare - a\blacksquare) - (d\blacksquare \times d\blacksquare)| / |d\blacksquare \times d\blacksquare|$. Here $a\blacksquare - a\blacksquare = (1,-3,1)$, $d\blacksquare \times d\blacksquare = (-1,4,3)$."
+      ],
+      "unverified": false,
+      "hasQuestionPaper": true
+    }
+  ]
+}

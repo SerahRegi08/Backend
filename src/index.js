@@ -59,6 +59,7 @@ const upload = multer({
   },
 });
 
+app.get('/', (req, res) => res.json({ status: 'ok', name: 'Cognify API', health: '/health' }));
 app.get('/health', (req, res) => res.json({ ok: true }));
 
 const STARTER_CLASS_NAMES = [
@@ -282,7 +283,11 @@ process.on('unhandledRejection', (reason) => {
   console.error('Backend Unhandled Rejection:', reason);
 });
 
-app.listen(PORT, () => {
-  console.log(`Cognify backend running on http://localhost:${PORT}`);
-});
+if (require.main === module || (!process.env.VERCEL && process.env.NODE_ENV !== 'production')) {
+  app.listen(PORT, () => {
+    console.log(`Cognify backend running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
 

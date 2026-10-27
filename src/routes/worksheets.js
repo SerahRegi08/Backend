@@ -2,10 +2,12 @@ const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const { read, write } = require('../store');
 
 const router = express.Router();
-const UPLOAD_DIR = path.join(__dirname, '..', '..', 'uploads');
+const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NOW_REGION);
+let UPLOAD_DIR = isServerless ? path.join(os.tmpdir(), 'cognify-uploads') : path.join(__dirname, '..', '..', 'uploads');
 
 const upload = multer({
   storage: multer.memoryStorage(),
