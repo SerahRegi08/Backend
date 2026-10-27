@@ -25,12 +25,34 @@ const nameMatch = (a, b) => {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({ origin: (process.env.FRONTEND_URL || 'http://localhost:3000').split(',') }));
-app.use(express.json());
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow any origin in development (reflection) so requests from localhost, 127.0.0.1, or any port succeed
+    callback(null, true);
+  },
+  credentials: true,
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Local-Teacher-ID',
+    'X-Requested-With',
+    'Accept',
+    'Origin',
+    'Range',
+  ],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+app.use(express.json({ limit: '30mb' }));
+app.use(express.urlencoded({ extended: true, limit: '30mb' }));
 
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB
+  limits: { fileSize: 30 * 1024 * 1024 }, // 30 MB
   fileFilter: (req, file, cb) => {
     const ok = file.mimetype.startsWith('image/') || file.mimetype === 'application/pdf';
     cb(ok ? null : new Error('Only images or PDFs are allowed'), ok);
@@ -39,9 +61,19 @@ const upload = multer({
 
 app.get('/health', (req, res) => res.json({ ok: true }));
 
+const STARTER_CLASS_NAMES = [
+  { id: 'class-10a', name: 'Class 10A' },
+  { id: 'class-10b', name: 'Class 10B' },
+  { id: 'class-9a', name: 'Class 9A' },
+  { id: 'class-9b', name: 'Class 9B' },
+];
+
 // Class names only (no student data) — lets new students pick their class.
 app.get('/api/classes/names', (req, res) => {
   const classes = read('classes.json', []);
+  if (!Array.isArray(classes) || classes.length === 0) {
+    return res.json(STARTER_CLASS_NAMES);
+  }
   return res.json(classes.map((c) => ({ id: c.id, name: c.name })));
 });
 
@@ -97,7 +129,13 @@ app.get('/api/students/lookup', (req, res) => {
       }
     });
   });
-  const worksheets = read('worksheets.json', []).filter((w) => samePerson(w.studentName));
+  const studentClassNames = new Set(matches.map((m) => normName(m.className)));
+  const worksheets = read('worksheets.json', []).filter((w) => {
+    if (samePerson(w.studentName)) return true;
+    const wClass = normName(w.className);
+    const isClassWide = !w.studentName || normName(w.studentName) === 'whole class';
+    return isClassWide && wClass && studentClassNames.has(wClass);
+  });
   return res.json({ query: req.query.name, matches, worksheets });
 });
 app.use('/api/classes', classRoutes);
@@ -105,23 +143,35 @@ app.use('/api/assignments', assignmentRoutes);
 app.use('/api/worksheets', worksheetRoutes);
 app.use('/api/submissions', submissionRoutes);
 
-// POST /api/classes/:id/analyze (fields: paper=file, studentName=text)
+const analyzeUpload = upload.fields([
+  { name: 'paper', maxCount: 1 },
+  { name: 'questionPaper', maxCount: 1 },
+]);
+
+// POST /api/classes/:id/analyze (fields: paper=file, questionPaper=file (optional), studentName=text)
 // Returns { student } — frontend adds it to the class student list,
 // which updates the Performance / Support / AI insights columns.
-app.post('/api/classes/:id/analyze', upload.single('paper'), async (req, res) => {
+app.post('/api/classes/:id/analyze', analyzeUpload, async (req, res) => {
   try {
     const studentName = String(req.body.studentName || '').trim();
     const subject = String(req.body.subject || '').trim();
     const school = String(req.body.school || '').trim();
     const board = String(req.body.board || '').trim();
     if (!studentName) return res.status(400).json({ error: 'Student name is required' });
-    if (!req.file) return res.status(400).json({ error: 'Paper file is required' });
+
+    const paperFile = req.files?.paper?.[0] || req.file;
+    if (!paperFile) return res.status(400).json({ error: 'Paper file is required' });
+
+    const questionPaperFile = req.files?.questionPaper?.[0] || null;
 
     const history = getHistory(req.params.id, studentName, subject);
 
     const student = await analyzePaper({
-      buffer: req.file.buffer,
-      mimetype: req.file.mimetype,
+      buffer: paperFile.buffer,
+      mimetype: paperFile.mimetype,
+      questionPaperBuffer: questionPaperFile ? questionPaperFile.buffer : null,
+      questionPaperMimetype: questionPaperFile ? questionPaperFile.mimetype : null,
+      hasQuestionPaper: Boolean(questionPaperFile),
       studentName,
       classId: req.params.id,
       history,
@@ -139,6 +189,7 @@ app.post('/api/classes/:id/analyze', upload.single('paper'), async (req, res) =>
       supportNeeds: student.supportNeeds || [],
       evidence: student.evidence || [],
       unverified: Boolean(student.unverified),
+      hasQuestionPaper: Boolean(student.hasQuestionPaper),
     }, subject);
 
     // write-through: file the result straight into the teacher's class,
@@ -224,6 +275,14 @@ app.use((err, req, res, next) => {
   next();
 });
 
+process.on('uncaughtException', (err) => {
+  console.error('Backend Uncaught Exception:', err.message);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('Backend Unhandled Rejection:', reason);
+});
+
 app.listen(PORT, () => {
   console.log(`Cognify backend running on http://localhost:${PORT}`);
 });
+

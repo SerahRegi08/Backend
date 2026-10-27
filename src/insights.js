@@ -88,8 +88,10 @@ function templateBriefing(snapshot) {
   });
   const total = snapshot.reduce((n, c) => n + c.students.length, 0);
   const decliningTotal = snapshot.reduce((n, c) => n + c.students.filter((s) => s.trend === 'declining').length, 0);
+  const studentWord = total === 1 ? 'student' : 'students';
+  const classWord = snapshot.length === 1 ? 'class' : 'classes';
   return {
-    summary: `${total} scanned students across ${snapshot.length} class${snapshot.length > 1 ? 'es' : ''}.` +
+    summary: `${total} scanned ${studentWord} across ${snapshot.length} ${classWord}.` +
       (decliningTotal > 0 ? ` ${decliningTotal} declining — see focus list.` : ' No declining trends right now.'),
     focusStudents: focusStudents.slice(0, 12),
     classNotes,
@@ -125,6 +127,7 @@ Rules: focus list = declining students first, then below-average; max 12. Every 
 
   const res = await fetch('https://api.mistral.ai/v1/chat/completions', {
     method: 'POST',
+    signal: AbortSignal.timeout(8000),
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
     body: JSON.stringify({
       model,

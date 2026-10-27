@@ -69,6 +69,7 @@ Return ONLY valid JSON: { "title": string, "instructions": string, "questions": 
 
   const res = await fetch('https://api.mistral.ai/v1/chat/completions', {
     method: 'POST',
+    signal: AbortSignal.timeout(8000),
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
     body: JSON.stringify({
       model,

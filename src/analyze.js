@@ -37,15 +37,22 @@ HONESTY RULES — follow strictly:
 3. Every claim in insights must trace to something visible: definitions seen,
    numericals seen, formulas seen, or their visible absence in an attempted answer.
 
+QUESTION PAPER INTEGRATION (if a Question Paper document is provided):
+- Evaluate the student's answer paper directly against the questions in the question paper.
+- Note which questions from the question paper were attempted, correctly answered, or missed.
+- Check whether formulas and definitions written by the student address the specific requirements of the questions.
+- Use the actual question topics to populate weakTopics and recommendations accurately.
+
 IMPORTANT: base the level verdict ONLY on the evidence visible in THIS paper.
 A first-time student with strong work is ABOVE AVERAGE; a long-known student
 with weak work is BELOW AVERAGE. Past records (if any) are only for a short
 progress comment — never for the verdict.}`.trim();
 
-function fallbackStudent(studentName, classId, progressLine, subject = '') {
+function fallbackStudent(studentName, classId, progressLine, subject = '', hasQuestionPaper = false) {
+  const qpNote = hasQuestionPaper ? ' (cross-referenced with Question Paper)' : '';
   const insights = progressLine
-    ? `${progressLine} AI key not configured. Add MISTRAL_API_KEY in backend/.env for full paper reading — student added for manual review.`
-    : 'AI key not configured. Add MISTRAL_API_KEY in backend/.env for full paper reading — student added for manual review.';
+    ? `${progressLine} AI key not configured. Add MISTRAL_API_KEY in backend/.env for full paper reading — student added for manual review${qpNote}.`
+    : `AI key not configured. Add MISTRAL_API_KEY in backend/.env for full paper reading — student added for manual review${qpNote}.`;
   return {
     id: `${classId}-${Date.now()}`,
     name: studentName,
@@ -58,12 +65,14 @@ function fallbackStudent(studentName, classId, progressLine, subject = '') {
     specialCare: false,
     numericalSkills: 'secure',
     weakTopics: [],
+    weakAreas: ['Manual review'],
     strengths: [],
     recommendations: ['Connect the AI key, then re-upload this paper for a full read.'],
+    hasQuestionPaper: Boolean(hasQuestionPaper),
   };
 }
 
-function toStudent(classId, studentName, a, subject = '') {
+function toStudent(classId, studentName, a, subject = '', hasQuestionPaper = false) {
   const evidence = Array.isArray(a.evidence) ? a.evidence.map(String).filter(Boolean) : [];
 
   // Guardrail: not a paper at all — refuse to assess, never invent a level.
@@ -80,10 +89,12 @@ function toStudent(classId, studentName, a, subject = '') {
       specialCare: false,
       numericalSkills: 'secure',
       weakTopics: [],
+      weakAreas: ['Manual review'],
       strengths: [],
       recommendations: ['Re-upload a clear photo of the answer paper.'],
       evidence,
       unverified: true,
+      hasQuestionPaper: Boolean(hasQuestionPaper),
     };
   }
 
@@ -107,10 +118,12 @@ function toStudent(classId, studentName, a, subject = '') {
     specialCare: Boolean(a.specialCare ?? level === 'below'),
     numericalSkills: a.numericalsNeedSupport ? 'needs-support' : 'secure',
     weakTopics: Array.isArray(a.weakTopics) ? a.weakTopics.map(String) : [],
+    weakAreas: Array.isArray(a.supportNeeds) && a.supportNeeds.length ? a.supportNeeds.map(String) : (Array.isArray(a.weakTopics) ? a.weakTopics.map(String) : []),
     strengths: Array.isArray(a.strengths) ? a.strengths.map(String) : [],
     recommendations: Array.isArray(a.recommendations) ? a.recommendations.map(String) : [],
     evidence,
     unverified,
+    hasQuestionPaper: Boolean(hasQuestionPaper),
   };
 }
 
@@ -136,7 +149,15 @@ function historyBlock(history, subject) {
   return `Past${scope} papers for THIS SAME student (oldest first):\n${lines.join('\n')}\nUse these ONLY for a short progress comment (improving/declining/stable, repeating weak areas). The level verdict must come from THIS paper alone.`;
 }
 
-async function analyzeWithMistral({ buffer, mimetype, studentName, subject, historyText }) {
+async function analyzeWithMistral({
+  buffer,
+  mimetype,
+  questionPaperBuffer,
+  questionPaperMimetype,
+  studentName,
+  subject,
+  historyText,
+}) {
   const apiKey = process.env.MISTRAL_API_KEY;
   const model = process.env.MISTRAL_MODEL || 'pixtral-12b-2409';
   if (!apiKey) return null;
@@ -147,8 +168,30 @@ async function analyzeWithMistral({ buffer, mimetype, studentName, subject, hist
     ? { type: 'document_url', document_url: `data:application/pdf;base64,${base64}` }
     : { type: 'image_url', image_url: `data:${mimetype};base64,${base64}` };
 
+  const content = [];
+  let promptText = `${RUBRIC}\n\nStudent name: ${studentName}\nSubject: ${subject || 'general'}\n\n${historyText}`;
+
+  if (questionPaperBuffer) {
+    const qpBase64 = questionPaperBuffer.toString('base64');
+    const isQpPdf = questionPaperMimetype === 'application/pdf';
+    const qpMediaPart = isQpPdf
+      ? { type: 'document_url', document_url: `data:application/pdf;base64,${qpBase64}` }
+      : { type: 'image_url', image_url: `data:${questionPaperMimetype};base64,${qpBase64}` };
+
+    promptText += '\n\nNOTE: A QUESTION PAPER has been attached below alongside the student answer paper. Cross-examine the student answer paper directly against the questions in the question paper.';
+    content.push({ type: 'text', text: promptText });
+    content.push({ type: 'text', text: '--- DOCUMENT 1: QUESTION PAPER ---' });
+    content.push(qpMediaPart);
+    content.push({ type: 'text', text: '--- DOCUMENT 2: STUDENT ANSWER PAPER ---' });
+    content.push(mediaPart);
+  } else {
+    content.push({ type: 'text', text: promptText });
+    content.push(mediaPart);
+  }
+
   const res = await fetch('https://api.mistral.ai/v1/chat/completions', {
     method: 'POST',
+    signal: AbortSignal.timeout(25000),
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${apiKey}`,
@@ -161,10 +204,7 @@ async function analyzeWithMistral({ buffer, mimetype, studentName, subject, hist
       messages: [
         {
           role: 'user',
-          content: [
-            { type: 'text', text: `${RUBRIC}\n\nStudent name: ${studentName}\nSubject: ${subject || 'general'}\n\n${historyText}` },
-            mediaPart,
-          ],
+          content,
         },
       ],
     }),
@@ -175,30 +215,48 @@ async function analyzeWithMistral({ buffer, mimetype, studentName, subject, hist
     throw new Error(`AI service error (${res.status}): ${text.slice(0, 200)}`);
   }
   const data = await res.json();
-  const content = data.choices?.[0]?.message?.content || '';
-  return JSON.parse(content);
+  const resContent = data.choices?.[0]?.message?.content || '';
+  return JSON.parse(resContent);
 }
 
-async function analyzePaper({ buffer, mimetype, studentName, classId, history = [], subject = '' }) {
+async function analyzePaper({
+  buffer,
+  mimetype,
+  questionPaperBuffer = null,
+  questionPaperMimetype = null,
+  hasQuestionPaper = false,
+  studentName,
+  classId,
+  history = [],
+  subject = '',
+}) {
   const isNewStudent = history.length === 0;
   const historyText = historyBlock(history, subject);
   try {
-    const ai = await analyzeWithMistral({ buffer, mimetype, studentName, subject, historyText });
+    const ai = await analyzeWithMistral({
+      buffer,
+      mimetype,
+      questionPaperBuffer,
+      questionPaperMimetype,
+      studentName,
+      subject,
+      historyText,
+    });
     if (!ai) {
-      const s = fallbackStudent(studentName, classId, progressLine(history, null, isNewStudent), subject);
+      const s = fallbackStudent(studentName, classId, progressLine(history, null, isNewStudent), subject, hasQuestionPaper);
       s.isNewStudent = isNewStudent;
       s.papersCount = history.length + 1;
       s.trend = 'unknown';
       return s;
     }
-    const student = toStudent(classId, studentName, ai, subject);
+    const student = toStudent(classId, studentName, ai, subject, hasQuestionPaper);
     student.isNewStudent = isNewStudent;
     student.papersCount = history.length + 1;
     student.trend = trendOf(history, student.performanceLevel);
     return student;
   } catch (err) {
     console.error('Paper analysis failed, using fallback:', err.message);
-    const s = fallbackStudent(studentName, classId, progressLine(history, null, isNewStudent), subject);
+    const s = fallbackStudent(studentName, classId, progressLine(history, null, isNewStudent), subject, hasQuestionPaper);
     s.isNewStudent = isNewStudent;
     s.papersCount = history.length + 1;
     s.trend = trendOf(history, 'average');
